@@ -9,7 +9,11 @@
     "cli.js"
   ],
   "keywords": [
-    "git","cli","checkout","helper","utils"
+    "git",
+    "cli",
+    "checkout",
+    "helper",
+    "utils"
   ],
   "license": "MIT",
   "repository": {
