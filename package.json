@@ -1,7 +1,7 @@
 {
-  "name": "git-smart-checkout",
+  "name": "git-checkout-gui",
   "version": "0.0.0",
-  "description": "Smart checkout for git",
+  "description": "Checkout gui for git",
   "bin": "cli.js",
   "main": "lib/index.js",
   "files": [
@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/d4rkr00t/git-smart-checkout"
+    "url": "https://github.com/d4rkr00t/git-checkout-gui"
   },
   "scripts": {
     "audit": "nsp check package",
