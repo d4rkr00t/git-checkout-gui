@@ -7,8 +7,19 @@ export function indent(str, lvl) {
   return new Array(lvl + 1).join(' ') + str;
 }
 
-export function getLevel(filepath) {
-  return filepath.split(path.sep).length - 1;
+export function getLevel(filepath, groupedFiles) {
+  let dirname = path.dirname(filepath);
+  let level = 0;
+  while (dirname !== '.') {
+    if (groupedFiles[dirname]) {
+      level += 1;
+    }
+
+    dirname = path.dirname(dirname);
+  }
+
+  return level;
+  // return filepath.split(path.sep).length - 1;
 }
 
 export function formatDirName(name, lvl, chalk) {
@@ -44,7 +55,7 @@ export default function prepareChoices(files, imports) {
     .sort((a, b) => a > b ? 1 : a < b ? -1 : 0) // eslint-disable-line
 
   const levelOffset = sortedDirs.reduce((offset, dir) => {
-    const level = getLevel(dir);
+    const level = getLevel(dir, groupedFiles);
     if (level < offset) {
       return level;
     }
@@ -56,13 +67,13 @@ export default function prepareChoices(files, imports) {
     if (item !== '.') {
       result.push({
         dir: true,
-        name: formatDirName(item, getLevel(item) - levelOffset, chalk),
+        name: formatDirName(item, getLevel(item, groupedFiles) - levelOffset, chalk),
         value: item
       });
     }
 
     groupedFiles[item].forEach((f, index) => {
-      const lvl = getLevel(f.name, levelOffset);
+      const lvl = getLevel(f.name, groupedFiles);
       const symbol = (index === groupedFiles[item].length - 1 && groupIndex > 0)
         ? SYMBOL_LAST
         : SYMBOL;
