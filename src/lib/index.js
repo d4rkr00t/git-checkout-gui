@@ -2,6 +2,7 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import childProcess from 'child_process';
 import isEmpty from 'lodash/lang/isEmpty';
+import proq from 'proq';
 
 import DynamicCheckbox from './dynamic-checkbox';
 import prepareChoices from './prepare-choices';
@@ -40,19 +41,20 @@ export default function gitSmartCheckout(files) {
       answers.files.forEach((file) => {
         console.log(chalk.yellow(`Checkout: ${file}`)); // eslint-disable-line
 
-        promiseList.push(new Promise((resolve) => {
-          const cp = childProcess.spawn(`git`, ['checkout', file]);
+        promiseList.push(function () {
+          return new Promise((resolve) => {
+            const cp = childProcess.spawn(`git`, ['checkout', file]);
 
-          cp.stderr.on('data', (data) => {
-            console.log(chalk.red(data)); // eslint-disable-line
+            cp.stderr.on('data', (data) => {
+              console.log(chalk.red(data)); // eslint-disable-line
+            });
+
+            cp.on('exit', resolve);
           });
-
-          cp.on('exit', resolve);
-        }));
+        });
       });
 
-      Promise
-        .all(promiseList)
+      proq(promiseList)
         .then(() => {
           console.log(); // eslint-disable-line
           console.log(chalk.green('Done!')); // eslint-disable-line
