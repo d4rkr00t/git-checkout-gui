@@ -6,12 +6,23 @@ import isEmpty from 'lodash/lang/isEmpty';
 
 import gitSmartCheckout from './lib/';
 
-const files = compact(childProcess
-  .execSync('git status --porcelain -uno | sed s/^...//', { encoding: 'utf-8' })
-  .split('\n'));
+childProcess.exec('git status --porcelain -uno | sed s/^...//', (error, files, stderr) => {
+  if (error) {
+    console.log(chalk.red(error)); // eslint-disable-line
+    return;
+  }
 
-if (isEmpty(files)) {
-  console.log(chalk.red('There is nothing to checkout.')); // eslint-disable-line
-} else {
+  if (stderr) {
+    console.log(chalk.red(stderr)); // eslint-disable-line
+    return;
+  }
+
+  files = compact(files.split('\n'));
+
+  if (isEmpty(files)) {
+    console.log(chalk.red('There is nothing to checkout.')); // eslint-disable-line
+    return;
+  }
+
   gitSmartCheckout(files);
-}
+});

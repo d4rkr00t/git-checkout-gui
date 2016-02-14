@@ -23,10 +23,23 @@ var _lib2 = _interopRequireDefault(_lib);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var files = (0, _compact2.default)(_child_process2.default.execSync('git status --porcelain -uno | sed s/^...//', { encoding: 'utf-8' }).split('\n'));
-
-if ((0, _isEmpty2.default)(files)) {
-  console.log(_chalk2.default.red('There is nothing to checkout.')); // eslint-disable-line
-} else {
-    (0, _lib2.default)(files);
+_child_process2.default.exec('git status --porcelain -uno | sed s/^...//', function (error, files, stderr) {
+  if (error) {
+    console.log(_chalk2.default.red(error)); // eslint-disable-line
+    return;
   }
+
+  if (stderr) {
+    console.log(_chalk2.default.red(stderr)); // eslint-disable-line
+    return;
+  }
+
+  files = (0, _compact2.default)(files.split('\n'));
+
+  if ((0, _isEmpty2.default)(files)) {
+    console.log(_chalk2.default.red('There is nothing to checkout.')); // eslint-disable-line
+    return;
+  }
+
+  (0, _lib2.default)(files);
+});
