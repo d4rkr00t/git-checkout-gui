@@ -1,13 +1,8 @@
-import path from 'path';
-import findIndex from 'lodash/array/findIndex';
-import clone from 'lodash/lang/clone';
-
-export function getLevel(filepath) {
-  return filepath.split(path.sep).length - 1;
-}
+import findIndex from 'lodash/findIndex';
+import clone from 'lodash/clone';
 
 export function isNotInside(currentIndex, currentLevel, item, itemIndex, totalChoices) {
-  return (item.dir && getLevel(item.value) <= currentLevel && itemIndex > currentIndex)
+  return (item.dir && item.level <= currentLevel && itemIndex > currentIndex)
     || itemIndex === totalChoices;
 }
 
@@ -26,7 +21,7 @@ export default function manageState(choices, choice, imports) {
     const notInside = isNotInside(currentIndex, currentLevel, item, idx, choices.length);
 
     if (item.dir && item.checked && (notInside || !currentIndex)) {
-      currentLevel = getLevel(item.value);
+      currentLevel = item.level;
       currentIndex = idx;
     }
 

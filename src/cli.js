@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 import childProcess from 'child_process';
 import chalk from 'chalk';
-import compact from 'lodash/array/compact';
-import isEmpty from 'lodash/lang/isEmpty';
+import compact from 'lodash/compact';
+import isEmpty from 'lodash/isEmpty';
 
 import gitSmartCheckout from './lib/';
 

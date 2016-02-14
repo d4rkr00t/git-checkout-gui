@@ -9,11 +9,11 @@ var _chalk = require('chalk');
 
 var _chalk2 = _interopRequireDefault(_chalk);
 
-var _compact = require('lodash/array/compact');
+var _compact = require('lodash/compact');
 
 var _compact2 = _interopRequireDefault(_compact);
 
-var _isEmpty = require('lodash/lang/isEmpty');
+var _isEmpty = require('lodash/isEmpty');
 
 var _isEmpty2 = _interopRequireDefault(_isEmpty);
 

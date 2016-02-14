@@ -1,5 +1,5 @@
 import test from 'ava';
-import identity from 'lodash/utility/identity';
+import identity from 'lodash/identity';
 
 import prepareChoices from '../../src/lib/prepare-choices';
 
@@ -12,21 +12,64 @@ const inputs = [
     'README.md',
     'lib/prepare-choices/index.js',
     'src/lib/prepare-choices/index.js'
+  ],
+  [
+    '.gitignore',
+    'README.md',
+    'package.json',
+    'src/cli.js',
+    'src/lib/index.js',
+    'test/index.js'
+  ],
+  [
+    'cli.js',
+    'lib/index.js',
+    'lib/manage-state/index.js',
+    'src/cli.js',
+    'src/lib/index.js',
+    'src/lib/manage-state/index.js',
+    'test/prepare-choices/formatDirName.js',
+    'test/prepare-choices/prepareChoices.js'
   ]
 ];
 
 const outputs = [
 
-  `├── link/
-|   └── link/.gitconfig
-├── bin/git/
-|   └── bin/git/git-smart-checkout`,
+  `├── bin/git/
+|   └── bin/git/git-smart-checkout
+├── link/
+|   └── link/.gitconfig`,
 
   `├── README.md
 ├── lib/prepare-choices/
 |   └── lib/prepare-choices/index.js
 ├── src/lib/prepare-choices/
-|   └── src/lib/prepare-choices/index.js`
+|   └── src/lib/prepare-choices/index.js`,
+
+  `├── .gitignore
+├── README.md
+├── package.json
+├── src/
+|   └── src/cli.js
+|   ├── src/lib/
+|       └── src/lib/index.js
+├── test/
+|   └── test/index.js`,
+
+  `├── cli.js
+├── lib/
+|   └── lib/index.js
+|   ├── lib/manage-state/
+|       └── lib/manage-state/index.js
+├── src/
+|   └── src/cli.js
+|   ├── src/lib/
+|       └── src/lib/index.js
+|       ├── src/lib/manage-state/
+|           └── src/lib/manage-state/index.js
+├── test/prepare-choices/
+|   ├── test/prepare-choices/formatDirName.js
+|   └── test/prepare-choices/prepareChoices.js`
 
 ];
 

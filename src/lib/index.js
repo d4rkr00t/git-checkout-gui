@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import childProcess from 'child_process';
-import isEmpty from 'lodash/lang/isEmpty';
+import isEmpty from 'lodash/isEmpty';
 import proq from 'proq';
 
 import DynamicCheckbox from './dynamic-checkbox';

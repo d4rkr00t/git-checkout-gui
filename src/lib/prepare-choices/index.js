@@ -28,6 +28,7 @@ export function indent(str, lvl) {
 export function getLevel(filepath, groupedFiles) {
   let dirname = path.dirname(filepath);
   let level = 0;
+
   while (dirname !== '.') {
     if (groupedFiles[dirname]) {
       level += 1;
@@ -93,26 +94,9 @@ export default function prepareChoices(files, imports) {
     return result;
   }, {});
 
-  const sortedDirs = Object
-    .keys(groupedFiles)
-    .sort((a, b) => {
-      const aDepth = a.split(path.sep).length - 1;
-      const bDepth = b.split(path.sep).length - 1;
+  const dirs = Object.keys(groupedFiles);
 
-      if (a > b) {
-        if (aDepth > bDepth) return -1;
-        if (aDepth < bDepth) return 1;
-      }
-
-      if (a < b) {
-        if (aDepth > bDepth) return 1;
-        if (aDepth < bDepth) return -1;
-      }
-
-      return 0;
-    });
-
-  const levelOffset = sortedDirs.reduce((offset, dir) => {
+  const levelOffset = dirs.reduce((offset, dir) => {
     const level = getLevel(dir, groupedFiles);
     if (level < offset) {
       return level;
@@ -121,25 +105,28 @@ export default function prepareChoices(files, imports) {
     return offset;
   }, 1000);
 
-  return sortedDirs.reduce((result, item, groupIndex) => {
+  return dirs.reduce((result, item, groupIndex) => {
     if (item !== '.') {
+      const level = getLevel(item, groupedFiles);
       result.push({
         dir: true,
-        name: formatDirName(item, getLevel(item, groupedFiles) - levelOffset, chalk),
-        value: item
+        name: formatDirName(item, level - levelOffset, chalk),
+        value: item,
+        level
       });
     }
 
     groupedFiles[item].forEach((f, index) => {
-      const lvl = getLevel(f.name, groupedFiles);
-      const symbol = (index === groupedFiles[item].length - 1 && (groupIndex > 0 || lvl > 0))
+      const level = getLevel(f.name, groupedFiles);
+      const symbol = (index === groupedFiles[item].length - 1 && (groupIndex > 0 || level > 0))
         ? SYMBOL_LAST
         : SYMBOL;
 
       result.push({
         dirname: f.dirname,
-        name: formatFileName(f.name, lvl - levelOffset, symbol, chalk),
-        value: f.name
+        name: formatFileName(f.name, level - levelOffset, symbol, chalk),
+        value: f.name,
+        level
       });
     });
 

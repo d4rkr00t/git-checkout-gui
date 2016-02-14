@@ -1,5 +1,5 @@
 import test from 'ava';
-import identity from 'lodash/utility/identity';
+import identity from 'lodash/identity';
 
 import { formatDirName } from '../../src/lib/prepare-choices';
 
