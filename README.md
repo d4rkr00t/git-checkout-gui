@@ -34,6 +34,7 @@ Or you can add alias to your .gitconfig:
 # shell
 git cog
 ```
+Example .gitconfig — [d4rkr00t/dotfiles/../.gitconfig#L15](https://github.com/d4rkr00t/dotfiles/blob/master/link/.gitconfig#L15).
 
 ## Author
 
