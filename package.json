@@ -13,7 +13,8 @@
     "cli",
     "checkout",
     "helper",
-    "utils"
+    "utils",
+    "inquirer"
   ],
   "license": "MIT",
   "repository": {
