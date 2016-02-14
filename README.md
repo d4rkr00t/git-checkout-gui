@@ -11,7 +11,7 @@ Checkout gui for git.
 
 
 ## Features
-[![asciicast](https://asciinema.org/a/36373.png)](https://asciinema.org/a/36373)
+[![asciicast](https://asciinema.org/a/36378.png)](https://asciinema.org/a/36378)
 
 ## Install
 
