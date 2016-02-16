@@ -23,6 +23,9 @@ var _lib2 = _interopRequireDefault(_lib);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Temporary polifyll for ancient node 0.10
+require('es6-promise').polyfill();
+
 _child_process2.default.exec('git status --porcelain -uno | sed s/^...//', function (error, files, stderr) {
   if (error) {
     console.log(_chalk2.default.red(error)); // eslint-disable-line

@@ -6,6 +6,9 @@ import isEmpty from 'lodash/isEmpty';
 
 import gitSmartCheckout from './lib/';
 
+// Temporary polifyll for ancient node 0.10
+require('es6-promise').polyfill();
+
 childProcess.exec('git status --porcelain -uno | sed s/^...//', (error, files, stderr) => {
   if (error) {
     console.log(chalk.red(error)); // eslint-disable-line
