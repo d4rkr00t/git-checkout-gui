@@ -6,7 +6,7 @@
 [![travis-status](https://img.shields.io/travis/d4rkr00t/git-checkout-gui.svg)](https://travis-ci.org/d4rkr00t/git-checkout-gui)
 [![coveralls](https://img.shields.io/coveralls/d4rkr00t/git-checkout-gui.svg)](https://coveralls.io/github/d4rkr00t/git-checkout-gui)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-![BEMHTML](https://img.shields.io/maintenance/no/2016.svg)
+![no-maintained](https://img.shields.io/maintenance/no/2016.svg)
 
 Checkout gui for git.
 
