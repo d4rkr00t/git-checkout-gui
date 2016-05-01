@@ -50,7 +50,7 @@
     "chalk": "^1.1.1",
     "es6-promise": "^3.1.2",
     "inquirer": "^1.0.0",
-    "lodash": "^4.3.0",
+    "lodash": "^4.11.1",
     "proq": "^1.0.0"
   },
   "devDependencies": {
